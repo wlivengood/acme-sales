@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Acme Sales</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<h1>Acme Sales</h1>
+	<ul class="nav nav-tabs">
+		<li {% if tab == 'home' %}class='active'{% endif %}><a href="/">Home</a></li>
+		<li {% if tab == 'salespeople' %}class='active'{% endif %}><a href="/salespeople">Sales People</a></li>
+		<li {% if tab == 'regions' %}class='active'{% endif %}><a href="/regions">Regions</a></li>
+	</ul>
+	<div class="container">
+	{% block main %}
+	{% endblock main %}
+	</div>
+</body>
+</html>

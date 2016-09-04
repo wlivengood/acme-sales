@@ -1,0 +1,55 @@
+{% extends './layout.html' %}
+{% block main %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div class='well'>
+  <form action="/salespeople" method="POST">
+    <label for="name_field">Add Salesperson:</label>
+    <input name="name" value = "Salesperson Name" type="text" id="name_field"/>
+    <input class='btn btn-primary' type="submit" value="Submit" />
+ </form>
+</div>
+	{% for salesperson in salespeople %}
+	<div class="panel panel-default">
+		<div class="panel-heading">{{salesperson.name}}
+			<form method="POST" action="/salespeople/{{salesperson.id}}?_method=DELETE">
+    			<button class='btn btn-danger'>Delete Salesperson</button>
+ 			</form>
+		</div>
+		<div class="panel-body">
+			{% for region in regions %}	
+			<ul class="list-group">
+				{% set hasRegion = false %}
+				{% for salespersonRegion in salesPersonRegions %}
+				{% if salespersonRegion.salespersonId == salesperson.id and salespersonRegion.regionId == region.id %}
+				{% set hasRegion = true %}
+				{% endif %}
+				{% endfor %}
+
+				{% if !hasRegion %}
+				<li class="list-group-item">{{region.region}}
+					<form method='POST' action='/salespersonregions/{{salesperson.id}}/{{region.id}}?_backurl=salespeople'>
+					<button class = 'btn btn-primary'>Add</button>
+					</form>
+ 				</li>
+ 				{% else %}
+ 				<li class="list-group-item list-group-item-success">{{region.region}}
+					<form method='POST' action='/salespersonregions/{{salesperson.id}}/{{region.id}}?_method=DELETE&_backurl=salespeople'>
+					<button class = 'btn btn-danger'>Remove</button>
+					</form>
+ 				</li>
+ 				{% endif %}
+				
+				
+			</ul>
+			{% endfor %}
+		</div>
+	</div>
+	{% endfor %}
+</body>
+</html>
+{% endblock main %}
