@@ -5,14 +5,18 @@ var Region = db.define('region', {
 	region: {
 		type: Sequelize.STRING,
 		allowNull: false,
-		unique: true
+		unique: true,
+		validate: {
+			isNumeric: true,
+			len: [5]
+		}
 	}
 });
 
 var Salesperson = db.define('salesperson', {
 	name: {
 		type: Sequelize.STRING,
-		allowNull: false,
+		allowNull: false
 	}
 });
 
