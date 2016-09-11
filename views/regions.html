@@ -23,6 +23,7 @@
 		<div class="panel-body">
 			{% for salesperson in salespeople %}
 			<ul class="list-group">
+        {% region.hasSalesPerson(salesPerson.id) %}
 				{% set hasSalesPerson = false %}
 				{% for salespersonRegion in salesPersonRegions %}
 				{% if salespersonRegion.salespersonId == salesperson.id and salespersonRegion.regionId == region.id %}

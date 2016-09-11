@@ -5,6 +5,10 @@ var Salesperson = models.Salesperson;
 var Region = models.Region;
 var SalespersonRegion = models.SalespersonRegion;
 
+/* 
+ * see my comments on salesPeople.. it's just the inverse
+ */
+
 router.get('/', function(req, res, next) {
 	var salespeople, regions;
 	return Salesperson.findAll()

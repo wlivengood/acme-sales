@@ -6,6 +6,7 @@ var Region = models.Region;
 var SalespersonRegion = models.SalespersonRegion;
 
 router.post('/:salesPersonId/:regionId', function(req, res, next) {
+  //you could just call destroy directly
 	return SalespersonRegion.create({
 		salespersonId: req.params.salesPersonId,
 		regionId: req.params.regionId
@@ -17,6 +18,7 @@ router.post('/:salesPersonId/:regionId', function(req, res, next) {
 });
 
 router.delete('/:salesPersonId/:regionId', function(req, res, next) {
+  //you could just call destroy directly
 	return SalespersonRegion.findOne({
 		where: {
 			salespersonId: req.params.salesPersonId,
@@ -30,7 +32,7 @@ router.delete('/:salesPersonId/:regionId', function(req, res, next) {
 		res.redirect('/' + req.query._backurl);
 	})
 	.catch(next);
-})
+});
 
 
 
